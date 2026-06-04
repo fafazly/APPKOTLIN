@@ -10,7 +10,7 @@ object DatabaseFactory {
             url = "jdbc:mysql://localhost:3306/users",
             driver = "com.mysql.cj.jdbc.Driver",
             user = "root",
-            password = "sua_senha"
+            password = "edneiaSQL"
         )
 
         transaction {
