@@ -1,26 +1,25 @@
 package org.example.service
 
 import org.example.repository.PostRepository
-import org.jetbrains.exposed.sql.ResultRow
+import org.example.models.PostEntity
 
-class PostService(private val postRepository: PostRepository) {
-    fun addPost(userId: Int, imageUrl: String, caption: String?): Boolean {
+class PostService(private val postRepository: PostRepository = PostRepository) {
+    
+    fun addPost(userId: Int, imageUrl: String, caption: String?): PostEntity? {
         return try {
             postRepository.addPost(userId, imageUrl, caption)
-            true
         } catch (e: Exception) {
-            false
+            null
         }
     }
 
-    fun getPostsByUser(userId: Int): List<ResultRow> = postRepository.getPostsByUser(userId)
+    fun getPostsByUser(userId: Int): List<PostEntity> = postRepository.getPostsByUser(userId)
 
-    fun getAllPosts(): List<ResultRow> = postRepository.getAllPosts()
+    fun getAllPosts(): List<PostEntity> = postRepository.getAllPosts()
 
     fun deletePost(postId: Int): Boolean {
         return try {
             postRepository.deletePost(postId)
-            true
         } catch (e: Exception) {
             false
         }
